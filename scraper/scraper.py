@@ -121,15 +121,19 @@ def executar_scraping():
                 jp = parse_jackpot(jp_data)
                 resumo["jackpot_totoloto"] = jp["totoloto"]
                 resumo["jackpot_joker"]    = jp["joker"]
-
-            # Atualiza sempre o concurso/data do jackpot
-            t_info = raw.get("totoloto", {})
-            atualizar_jackpot("totoloto", resumo["jackpot_totoloto"],
-                              t_info.get("drawCode",""), t_info.get("drawDate","")[:10])
-
-            j_info = raw.get("joker", {})
-            atualizar_jackpot("joker", resumo["jackpot_joker"],
-                              j_info.get("drawCode",""), j_info.get("drawDate","")[:10])
+                toto_draw = jp_data.get("lastDrawOnSale_totoloto", {})
+                joker_draw = jp_data.get("lastDrawOnSale_joker", {})
+                atualizar_jackpot("totoloto", jp["totoloto"],
+                                  toto_draw.get("drawCode",""), toto_draw.get("drawDate","")[:10])
+                atualizar_jackpot("joker", jp["joker"],
+                                  joker_draw.get("drawCode",""), joker_draw.get("drawDate","")[:10])
+            else:
+                t_info = raw.get("totoloto", {})
+                atualizar_jackpot("totoloto", 0.0,
+                                  t_info.get("drawCode",""), t_info.get("drawDate","")[:10])
+                j_info = raw.get("joker", {})
+                atualizar_jackpot("joker", 0.0,
+                                  j_info.get("drawCode",""), j_info.get("drawDate","")[:10])
 
         concurso = raw.get("totoloto",{}).get("drawCode","?") if raw else "?"
         msg = f"OK â€” Concurso: {concurso} | Novos: Totoloto={resumo['novos_totoloto']}, Joker={resumo['novos_joker']}"
@@ -159,4 +163,5 @@ if __name__ == '__main__':
     print("\nðŸ“Š Resumo:")
     for k, v in r.items():
         print(f"  {k}: {v}")
+
 
