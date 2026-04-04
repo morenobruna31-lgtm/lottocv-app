@@ -10,8 +10,7 @@ DATABASE_URL = os.getenv("DATABASE_URL", "")
 USE_POSTGRES = DATABASE_URL.startswith("postgres")
 
 if USE_POSTGRES:
-    import psycopg2
-    import psycopg2.extras
+    import pg8000.native
 else:
     import sqlite3
 
@@ -289,5 +288,6 @@ def desfazer_ultimo_gasto(mes: str) -> dict:
             conn.commit()
     conn.close()
     return obter_orcamento_mes(mes)
+
 
 
