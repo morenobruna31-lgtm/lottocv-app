@@ -1,5 +1,5 @@
-"""
-Scraper — jogoscruzvermelha.cv
+﻿"""
+Scraper â€” jogoscruzvermelha.cv
 Usa a API JSON oficial do site (descoberta via Network tab)
 """
 
@@ -40,7 +40,7 @@ def fetch_json(url, retries=3):
 def scrape_ultimo_sorteio():
     data = fetch_json(API["ultimo_sorteio"])
     if data:
-        log.info(f"[API] Último sorteio: concurso {data.get('totoloto',{}).get('drawCode','?')}")
+        log.info(f"[API] Ãšltimo sorteio: concurso {data.get('totoloto',{}).get('drawCode','?')}")
     return data
 
 
@@ -83,23 +83,21 @@ def parse_jackpot(data):
     if not data:
         return resultado
     for jogo in ["totoloto", "joker"]:
-        bloco = data.get(jogo, {})
+        bloco = data.get(f"lastDrawOnSale_{jogo}", {})
         if isinstance(bloco, dict):
-            for chave in ["jackpot", "prizePool", "accumulation", "jackpotValue", "prize", "amount"]:
-                val = bloco.get(chave)
-                if val:
-                    try:
-                        resultado[jogo] = float(str(val).replace(".", "").replace(",", "."))
-                        break
-                    except ValueError:
-                        pass
+            val = bloco.get("estimatedJackpotValue", 0)
+            if val:
+                try:
+                    resultado[jogo] = float(val)
+                except ValueError:
+                    pass
     return resultado
 
 
 def executar_scraping():
     from database.models import salvar_totoloto, salvar_joker, atualizar_jackpot, registar_log
 
-    log.info("=== Início do Scraping (API JSON) ===")
+    log.info("=== InÃ­cio do Scraping (API JSON) ===")
     resumo = {"jackpot_totoloto": 0.0, "jackpot_joker": 0.0, "novos_totoloto": 0, "novos_joker": 0}
 
     try:
@@ -109,13 +107,13 @@ def executar_scraping():
             if toto:
                 if salvar_totoloto(toto):
                     resumo["novos_totoloto"] += 1
-                    log.info(f"[Totoloto] Guardado: {toto['concurso']} — {[toto[f'n{i}'] for i in range(1,7)]}")
+                    log.info(f"[Totoloto] Guardado: {toto['concurso']} â€” {[toto[f'n{i}'] for i in range(1,7)]}")
 
             joker = parse_joker(raw)
             if joker:
                 if salvar_joker(joker):
                     resumo["novos_joker"] += 1
-                    log.info(f"[Joker] Guardado: {joker['concurso']} — {joker['numero']}")
+                    log.info(f"[Joker] Guardado: {joker['concurso']} â€” {joker['numero']}")
 
             # Jackpot atual
             jp_data = scrape_jackpot_atual()
@@ -134,7 +132,7 @@ def executar_scraping():
                               j_info.get("drawCode",""), j_info.get("drawDate","")[:10])
 
         concurso = raw.get("totoloto",{}).get("drawCode","?") if raw else "?"
-        msg = f"OK — Concurso: {concurso} | Novos: Totoloto={resumo['novos_totoloto']}, Joker={resumo['novos_joker']}"
+        msg = f"OK â€” Concurso: {concurso} | Novos: Totoloto={resumo['novos_totoloto']}, Joker={resumo['novos_joker']}"
         log.info(msg)
         registar_log("OK", msg, resumo["novos_totoloto"] + resumo["novos_joker"])
 
@@ -158,6 +156,7 @@ def scrape_jackpot_totoloto():
 
 if __name__ == '__main__':
     r = executar_scraping()
-    print("\n📊 Resumo:")
+    print("\nðŸ“Š Resumo:")
     for k, v in r.items():
         print(f"  {k}: {v}")
+
