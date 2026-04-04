@@ -10,7 +10,7 @@ DATABASE_URL = os.getenv("DATABASE_URL", "")
 USE_POSTGRES = DATABASE_URL.startswith("postgres")
 
 if USE_POSTGRES:
-    import pg8000.native
+    import pg8000
 else:
     import sqlite3
 
@@ -21,7 +21,7 @@ def get_connection():
     if USE_POSTGRES:
         from urllib.parse import urlparse
         u = urlparse(DATABASE_URL)
-        return pg8000.native.Connection(
+        return pg8000.connect(
             host=u.hostname,
             port=u.port or 5432,
             database=u.path.lstrip("/"),
@@ -297,6 +297,8 @@ def desfazer_ultimo_gasto(mes: str) -> dict:
             conn.commit()
     conn.close()
     return obter_orcamento_mes(mes)
+
+
 
 
 
