@@ -20,7 +20,7 @@ DB_PATH = os.path.join(os.path.dirname(__file__), '..', 'lotto_cv.db')
 
 def get_connection():
     if USE_POSTGRES:
-        return psycopg2.connect(DATABASE_URL)
+        return pg8000.native.Connection(DATABASE_URL)
     else:
         import sqlite3
         conn = sqlite3.connect(DB_PATH)
@@ -289,3 +289,5 @@ def desfazer_ultimo_gasto(mes: str) -> dict:
             conn.commit()
     conn.close()
     return obter_orcamento_mes(mes)
+
+
