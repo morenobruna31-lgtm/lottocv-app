@@ -77,7 +77,7 @@ def salvar_totoloto(dados: dict) -> bool:
     try:
         cur = conn.cursor()
         if USE_POSTGRES:
-            cur.execute("""INSERT INTO totoloto (concurso,data,n1,n2,n3,n4,n5,n6,complementar,jackpot,vencedores) VALUES (%(concurso)s,%(data)s,%(n1)s,%(n2)s,%(n3)s,%(n4)s,%(n5)s,%(n6)s,%(complementar)s,%(jackpot)s,%(vencedores)s) ON CONFLICT (concurso) DO NOTHING""", dados)
+            cur.execute("""INSERT INTO totoloto (concurso,data,n1,n2,n3,n4,n5,n6,complementar,jackpot,vencedores) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s) ON CONFLICT (concurso) DO NOTHING""", [dados.get(k) for k in ["concurso","data","n1","n2","n3","n4","n5","n6","complementar","jackpot","vencedores"]])
         else:
             cur.execute("""INSERT OR IGNORE INTO totoloto (concurso,data,n1,n2,n3,n4,n5,n6,complementar,jackpot,vencedores) VALUES (:concurso,:data,:n1,:n2,:n3,:n4,:n5,:n6,:complementar,:jackpot,:vencedores)""", dados)
         conn.commit()
@@ -91,7 +91,7 @@ def salvar_joker(dados: dict) -> bool:
     try:
         cur = conn.cursor()
         if USE_POSTGRES:
-            cur.execute("""INSERT INTO joker (concurso,data,numero,jackpot,vencedores) VALUES (%(concurso)s,%(data)s,%(numero)s,%(jackpot)s,%(vencedores)s) ON CONFLICT (concurso) DO NOTHING""", dados)
+            cur.execute("""INSERT INTO joker (concurso,data,numero,jackpot,vencedores) VALUES (%s,%s,%s,%s,%s) ON CONFLICT (concurso) DO NOTHING""", [dados.get(k) for k in ["concurso","data","numero","jackpot","vencedores"]])
         else:
             cur.execute("""INSERT OR IGNORE INTO joker (concurso,data,numero,jackpot,vencedores) VALUES (:concurso,:data,:numero,:jackpot,:vencedores)""", dados)
         conn.commit()
@@ -297,6 +297,8 @@ def desfazer_ultimo_gasto(mes: str) -> dict:
             conn.commit()
     conn.close()
     return obter_orcamento_mes(mes)
+
+
 
 
 
