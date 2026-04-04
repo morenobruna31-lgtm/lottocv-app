@@ -19,7 +19,16 @@ DB_PATH = os.path.join(os.path.dirname(__file__), '..', 'lotto_cv.db')
 
 def get_connection():
     if USE_POSTGRES:
-        return pg8000.native.Connection(DATABASE_URL)
+        from urllib.parse import urlparse
+        u = urlparse(DATABASE_URL)
+        return pg8000.native.Connection(
+            host=u.hostname,
+            port=u.port or 5432,
+            database=u.path.lstrip("/"),
+            user=u.username,
+            password=u.password,
+            ssl_context=True
+        )
     else:
         import sqlite3
         conn = sqlite3.connect(DB_PATH)
@@ -288,6 +297,7 @@ def desfazer_ultimo_gasto(mes: str) -> dict:
             conn.commit()
     conn.close()
     return obter_orcamento_mes(mes)
+
 
 
 
