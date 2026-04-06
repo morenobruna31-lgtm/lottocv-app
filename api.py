@@ -348,3 +348,26 @@ Lembra brevemente que lotaria é aleatória. Máximo 200 palavras. Usa emojis co
         resposta = f"⚠️ Erro de ligação ao LottoVision: {str(e)}"
 
     return {"resposta": resposta}
+
+@app.post("/api/seed")
+def seed_historico():
+    from database.models import salvar_totoloto, atualizar_jackpot
+    sorteios = [
+        {"concurso":"14/2026","data":"2026-04-04","n1":19,"n2":20,"n3":26,"n4":37,"n5":42,"n6":43,"complementar":None,"jackpot":22500000,"vencedores":0},
+        {"concurso":"13/2026","data":"2026-03-28","n1":10,"n2":12,"n3":21,"n4":25,"n5":29,"n6":40,"complementar":None,"jackpot":20000000,"vencedores":0},
+        {"concurso":"12/2026","data":"2026-03-21","n1":3,"n2":11,"n3":18,"n4":22,"n5":35,"n6":44,"complementar":None,"jackpot":17000000,"vencedores":0},
+        {"concurso":"11/2026","data":"2026-03-14","n1":7,"n2":14,"n3":23,"n4":31,"n5":38,"n6":41,"complementar":None,"jackpot":15000000,"vencedores":0},
+        {"concurso":"10/2026","data":"2026-03-07","n1":2,"n2":9,"n3":16,"n4":27,"n5":33,"n6":45,"complementar":None,"jackpot":12000000,"vencedores":0},
+        {"concurso":"09/2026","data":"2026-02-28","n1":5,"n2":13,"n3":20,"n4":28,"n5":36,"n6":42,"complementar":None,"jackpot":10000000,"vencedores":0},
+        {"concurso":"08/2026","data":"2026-02-21","n1":1,"n2":8,"n3":17,"n4":24,"n5":32,"n6":39,"complementar":None,"jackpot":8000000,"vencedores":0},
+        {"concurso":"07/2026","data":"2026-02-14","n1":6,"n2":15,"n3":19,"n4":29,"n5":34,"n6":43,"complementar":None,"jackpot":6000000,"vencedores":0},
+        {"concurso":"06/2026","data":"2026-02-07","n1":4,"n2":10,"n3":21,"n4":30,"n5":37,"n6":44,"complementar":None,"jackpot":5000000,"vencedores":0},
+        {"concurso":"05/2026","data":"2026-01-31","n1":2,"n2":12,"n3":18,"n4":25,"n5":33,"n6":40,"complementar":None,"jackpot":4000000,"vencedores":0},
+    ]
+    count = 0
+    for s in sorteios:
+        if salvar_totoloto(s):
+            count += 1
+    atualizar_jackpot("totoloto", 22500000, "14/2026", "2026-04-04")
+    atualizar_jackpot("joker", 51600000, "14/2026", "2026-04-04")
+    return {"status": "ok", "inseridos": count}
