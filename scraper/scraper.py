@@ -83,7 +83,7 @@ def parse_jackpot(data):
     if not data:
         return resultado
     for jogo in ["totoloto", "joker"]:
-        bloco = data.get(f"lastDrawOnSale_{jogo}", {})
+        bloco = data.get(f"nextDraw_{jogo}", data.get(f"lastDrawOnSale_{jogo}", {}))
         if isinstance(bloco, dict):
             val = bloco.get("estimatedJackpotValue", 0)
             if val:
@@ -163,5 +163,6 @@ if __name__ == '__main__':
     print("\nðŸ“Š Resumo:")
     for k, v in r.items():
         print(f"  {k}: {v}")
+
 
 
