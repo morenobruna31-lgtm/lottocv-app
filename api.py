@@ -1,5 +1,5 @@
-"""
-API REST — LottoCV Dashboard
+﻿"""
+API REST â€” LottoCV Dashboard
 """
 import os, sys
 from fastapi import FastAPI
@@ -34,9 +34,9 @@ if os.path.exists(dashboard_dir):
     app.mount("/static", StaticFiles(directory=dashboard_dir), name="static")
 
 
-# ──────────────────────────────────────────────
+# â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 # Dashboard
-# ──────────────────────────────────────────────
+# â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 @app.get("/")
 def root():
     index = os.path.join(dashboard_dir, "index.html")
@@ -45,9 +45,9 @@ def root():
     return {"status": "LottoCV API a funcionar", "docs": "/docs"}
 
 
-# ──────────────────────────────────────────────
+# â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 # Jackpot
-# ──────────────────────────────────────────────
+# â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 @app.get("/api/jackpot")
 def get_jackpot():
     from database.models import obter_jackpot_atual
@@ -57,22 +57,22 @@ def get_jackpot():
         "totoloto": {
             "valor":         toto.get("valor", 0),
             "valor_contos":  toto.get("valor", 0) / 1000,
-            "concurso":      toto.get("concurso", "—"),
-            "data_sorteio":  toto.get("data_sorteio", "—"),
-            "atualizado_em": toto.get("atualizado_em", "—"),
+            "concurso":      toto.get("concurso", "â€”"),
+            "data_sorteio":  toto.get("data_sorteio", "â€”"),
+            "atualizado_em": toto.get("atualizado_em", "â€”"),
         },
         "joker": {
             "valor":         joker.get("valor", 0),
             "valor_contos":  joker.get("valor", 0) / 1000,
-            "concurso":      joker.get("concurso", "—"),
-            "atualizado_em": joker.get("atualizado_em", "—"),
+            "concurso":      joker.get("concurso", "â€”"),
+            "atualizado_em": joker.get("atualizado_em", "â€”"),
         }
     }
 
 
-# ──────────────────────────────────────────────
-# Frequências
-# ──────────────────────────────────────────────
+# â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# FrequÃªncias
+# â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 @app.get("/api/frequencias")
 def get_frequencias():
     from database.models import obter_historico_totoloto
@@ -98,9 +98,9 @@ def get_frequencias():
     }
 
 
-# ──────────────────────────────────────────────
-# Recomendação
-# ──────────────────────────────────────────────
+# â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# RecomendaÃ§Ã£o
+# â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 @app.get("/api/recomendacao")
 def get_recomendacao():
     from scraper.decision_engine import recomendar_estrategia
@@ -113,9 +113,9 @@ def get_recomendacao_modo(modo: str):
     return recomendar_estrategia(modo.upper())
 
 
-# ──────────────────────────────────────────────
-# Combinações
-# ──────────────────────────────────────────────
+# â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# CombinaÃ§Ãµes
+# â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 @app.get("/api/combinacoes")
 def get_combinacoes(n: int = 5, estrategia: str = "equilibrada"):
     from scraper.decision_engine import gerar_multiplas_combinacoes
@@ -128,9 +128,9 @@ def get_combinacoes_n(n: int, estrategia: str = "equilibrada"):
     return {"combinacoes": gerar_multiplas_combinacoes(n, estrategia), "estrategia": estrategia, "n": n}
 
 
-# ──────────────────────────────────────────────
-# Histórico
-# ──────────────────────────────────────────────
+# â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# HistÃ³rico
+# â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 @app.get("/api/historico")
 def get_historico(limite: int = 20):
     from database.models import obter_historico_totoloto
@@ -140,52 +140,51 @@ def get_historico(limite: int = 20):
 
 @app.get("/api/jackpot/evolucao")
 def get_evolucao_jackpot():
-    from database.models import get_connection
+    from database.models import get_connection, USE_POSTGRES, _fetchall
     conn = get_connection()
-    rows = conn.execute("""
-        SELECT concurso, data, jackpot FROM totoloto
-        WHERE jackpot > 0 ORDER BY data ASC LIMIT 100
-    """).fetchall()
+    cur = conn.cursor()
+    cur.execute("SELECT concurso, data, jackpot FROM totoloto WHERE jackpot > 0 ORDER BY data ASC LIMIT 100")
+    rows = _fetchall(cur)
     conn.close()
-    return {"evolucao": [dict(r) for r in rows]}
+    return {"evolucao": rows}
 
 
-# ──────────────────────────────────────────────
+# â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 # Scraping
-# ──────────────────────────────────────────────
+# â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 @app.post("/api/scrape")
 def trigger_scrape():
     from scraper.scraper import executar_scraping
     return {"status": "ok", "resultado": executar_scraping()}
 
 
-# ──────────────────────────────────────────────
-# Próximo mês
-# ──────────────────────────────────────────────
+# â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# PrÃ³ximo mÃªs
+# â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 @app.get("/api/proximo-mes")
 def get_proximo_mes():
     from scraper.decision_engine import analisar_proximo_mes
     return analisar_proximo_mes()
 
 
-# ──────────────────────────────────────────────
-# Bênção & Bíblia
-# ──────────────────────────────────────────────
+# â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# BÃªnÃ§Ã£o & BÃ­blia
+# â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 @app.get("/api/bencao")
 def get_bencao():
     from scraper.biblia import bencao_completa
     return bencao_completa()
 
 
-# ──────────────────────────────────────────────
+# â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 # Apostas
-# ──────────────────────────────────────────────
+# â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 @app.post("/api/apostas")
 def registar_aposta(payload: dict):
     from database.models import salvar_aposta
     nums = payload.get("numeros", [])
     if len(nums) != 6:
-        return {"erro": "Precisas de exatamente 6 números."}
+        return {"erro": "Precisas de exatamente 6 nÃºmeros."}
     dados = {
         "concurso": payload.get("concurso", ""),
         "jogo":     payload.get("jogo", "totoloto"),
@@ -211,7 +210,7 @@ def verificar_concurso(concurso: str):
     sorteio = conn.execute("SELECT * FROM totoloto WHERE concurso = ?", (concurso,)).fetchone()
     conn.close()
     if not sorteio:
-        return {"erro": f"Sorteio {concurso} não encontrado."}
+        return {"erro": f"Sorteio {concurso} nÃ£o encontrado."}
     sorteio   = dict(sorteio)
     jp_info   = obter_jackpot_atual("totoloto") or {}
     jp_val    = jp_info.get("valor", 0)
@@ -248,9 +247,9 @@ def verificar_ultimo():
     return verificar_concurso(row["concurso"])
 
 
-# ──────────────────────────────────────────────
-# Orçamento
-# ──────────────────────────────────────────────
+# â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# OrÃ§amento
+# â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 @app.get("/api/orcamento/{mes}")
 def get_orcamento(mes: str):
     from database.models import obter_orcamento_mes
@@ -273,9 +272,9 @@ def desfazer_gasto(mes: str):
     return desfazer_ultimo_gasto(mes)
 
 
-# ──────────────────────────────────────────────
+# â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 # LottoVision IA
-# ──────────────────────────────────────────────
+# â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 @app.post("/api/lottovision")
 async def lottovision(payload: dict):
     import requests as req
@@ -306,19 +305,19 @@ async def lottovision(payload: dict):
         for i, c in enumerate(rec['combinacoes'])
     ])
 
-    system_prompt = f"""Es o LottoVision, assistente inteligente de apostas do LottoCV — Jogos Sociais de Cabo Verde.
+    system_prompt = f"""Es o LottoVision, assistente inteligente de apostas do LottoCV â€” Jogos Sociais de Cabo Verde.
 
 DADOS ATUAIS:
 - Concurso: {jackpot.get('concurso','--')} | Jackpot: {jackpot.get('valor',0)/1000:.0f} contos ECV
-- Sorteio: Sábados às 19h15 (TCV) | Custo: 30 ECV Totoloto + 70 ECV Joker = 100 ECV
-- Modo este mês: {rec['modo']} | Orçamento/sorteio: {rec['orcamento_usar']} ECV
-- Sorteios analisados: {len(historico)} | Números quentes: {rec['numeros_quentes'][:8]}
-- Números frios: {rec['numeros_frios'][:8]}
-COMBINAÇÕES SUGERIDAS:
+- Sorteio: SÃ¡bados Ã s 19h15 (TCV) | Custo: 30 ECV Totoloto + 70 ECV Joker = 100 ECV
+- Modo este mÃªs: {rec['modo']} | OrÃ§amento/sorteio: {rec['orcamento_usar']} ECV
+- Sorteios analisados: {len(historico)} | NÃºmeros quentes: {rec['numeros_quentes'][:8]}
+- NÃºmeros frios: {rec['numeros_frios'][:8]}
+COMBINAÃ‡Ã•ES SUGERIDAS:
 {combos_txt}
 
-Responde em português. Se pedirem combinações, gera novas e apresenta-as bem formatadas com os números separados por travessão (ex: 05 - 12 - 21 - 33 - 40 - 44).
-Lembra brevemente que lotaria é aleatória. Máximo 200 palavras. Usa emojis com moderação."""
+Responde em portuguÃªs. Se pedirem combinaÃ§Ãµes, gera novas e apresenta-as bem formatadas com os nÃºmeros separados por travessÃ£o (ex: 05 - 12 - 21 - 33 - 40 - 44).
+Lembra brevemente que lotaria Ã© aleatÃ³ria. MÃ¡ximo 200 palavras. Usa emojis com moderaÃ§Ã£o."""
 
     try:
         r = req.post(
@@ -341,11 +340,11 @@ Lembra brevemente que lotaria é aleatória. Máximo 200 palavras. Usa emojis co
         if not resposta:
             err = data.get("error", {})
             if "credit" in str(err).lower() or "balance" in str(err).lower():
-                resposta = "⚠️ A tua conta Anthropic não tem créditos suficientes. Adiciona créditos em console.anthropic.com/settings/billing para usar o LottoVision."
+                resposta = "âš ï¸ A tua conta Anthropic nÃ£o tem crÃ©ditos suficientes. Adiciona crÃ©ditos em console.anthropic.com/settings/billing para usar o LottoVision."
             else:
                 resposta = f"Erro: {err.get('message', str(data))}"
     except Exception as e:
-        resposta = f"⚠️ Erro de ligação ao LottoVision: {str(e)}"
+        resposta = f"âš ï¸ Erro de ligaÃ§Ã£o ao LottoVision: {str(e)}"
 
     return {"resposta": resposta}
 
@@ -371,3 +370,4 @@ def seed_historico():
     atualizar_jackpot("totoloto", 22500000, "14/2026", "2026-04-04")
     atualizar_jackpot("joker", 51600000, "14/2026", "2026-04-04")
     return {"status": "ok", "inseridos": count}
+
