@@ -83,7 +83,7 @@ def parse_jackpot(data):
     if not data:
         return resultado
     for jogo in ["totoloto", "joker"]:
-        bloco = data.get(f"nextDraw_{jogo}", data.get(f"lastDrawOnSale_{jogo}", {}))
+        bloco = data.get(jogo, {})
         if isinstance(bloco, dict):
             val = bloco.get("estimatedJackpotValue", 0)
             if val:
@@ -121,8 +121,8 @@ def executar_scraping():
                 jp = parse_jackpot(jp_data)
                 resumo["jackpot_totoloto"] = jp["totoloto"]
                 resumo["jackpot_joker"]    = jp["joker"]
-                toto_draw = jp_data.get("lastDrawOnSale_totoloto", {})
-                joker_draw = jp_data.get("lastDrawOnSale_joker", {})
+                toto_draw = jp_data.get("totoloto", {})
+                joker_draw = jp_data.get("joker", {})
                 atualizar_jackpot("totoloto", jp["totoloto"],
                                   toto_draw.get("drawCode",""), toto_draw.get("drawDate","")[:10])
                 atualizar_jackpot("joker", jp["joker"],
@@ -163,6 +163,8 @@ if __name__ == '__main__':
     print("\nðŸ“Š Resumo:")
     for k, v in r.items():
         print(f"  {k}: {v}")
+
+
 
 
 
