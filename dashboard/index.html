@@ -403,6 +403,38 @@ header{display:flex;align-items:center;justify-content:space-between;padding:28p
   </div>
 </div>
 
+
+<!-- NEAR MISS -->
+<div style="margin-bottom:20px">
+  <div class="card">
+    <div class="card-title">🎯 Quase Saiu — Combinações que Quase Acertaram</div>
+    <div id="nearmiss-container">
+      <div style="color:var(--muted);font-size:13px">A carregar análise...</div>
+    </div>
+  </div>
+</div>
+
+<!-- ESTATÍSTICAS -->
+<div style="margin-bottom:20px">
+  <div class="card">
+    <div class="card-title">📊 Estatísticas Avançadas</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px" id="stats-grid">
+      <div>
+        <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:10px">⏰ Mais Atrasados</div>
+        <div id="stats-atrasados" style="display:flex;flex-direction:column;gap:6px"></div>
+      </div>
+      <div>
+        <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:10px">🔗 Pares Mais Frequentes</div>
+        <div id="stats-pares" style="display:flex;flex-direction:column;gap:6px"></div>
+      </div>
+      <div>
+        <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:10px">❄️ Menos Sorteados</div>
+        <div id="stats-frios" style="display:flex;flex-direction:column;gap:6px"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- LOTTOVISION AI -->
 <div class="lv-section">
   <div class="lv-card">
@@ -444,14 +476,19 @@ header{display:flex;align-items:center;justify-content:space-between;padding:28p
 </div><!-- .app -->
 
 <script>
-const API = '';
+const API = 'http://localhost:8000';
 let freqData=[], hotNums=new Set(), coldNums=new Set();
 let freqChart, evoChart, freqAnimFrame;
 const fmt = function(n){ return Number(n).toLocaleString('pt-PT'); };
 
 async function api(path, opts){
   try{
-    const r = await fetch(API+path, opts);
+    const defaultOpts = { credentials: 'include' };
+    const merged = Object.assign({}, defaultOpts, opts);
+    if(opts && opts.headers){
+      merged.headers = Object.assign({}, opts.headers);
+    }
+    const r = await fetch(API+path, merged);
     if(!r.ok) throw new Error(r.status);
     return await r.json();
   }catch(e){ console.warn('API erro:',path,e); return null; }
@@ -913,6 +950,95 @@ function sendSuggestion(el){
 }
 
 /* ── Load All ── */
+
+/* ── Near Miss ── */
+async function loadNearMiss(){
+  const d = await api('/api/nearmiss');
+  const el = document.getElementById('nearmiss-container');
+  if(!d || !d.nearmiss || !d.nearmiss.length){
+    el.innerHTML = '<div style="color:var(--muted);font-size:13px">'+
+      (d && d.info ? d.info : 'Sem dados de near miss ainda. As combinações geradas serão analisadas após cada sorteio.')+'</div>';
+    return;
+  }
+  let html = '';
+  d.nearmiss.forEach(function(r){
+    const cor = r.acertos >= 4 ? '#00d4aa' : r.acertos === 3 ? '#f5c842' : 'var(--muted)';
+    const emoji = r.acertos >= 5 ? '🏆' : r.acertos >= 4 ? '🥈' : r.acertos >= 3 ? '🥉' : '📍';
+    let balls = '';
+    r.numeros_gerados.forEach(function(n){
+      const hit = r.numeros_certos.includes(n);
+      balls += '<div class="aball '+(hit?'aball-hit':'aball-miss')+'">'+String(n).padStart(2,'0')+'</div>';
+    });
+    const tag = r.jogada ? '<span style="background:rgba(0,212,170,0.15);color:#00d4aa;font-size:10px;padding:2px 6px;border-radius:4px">Jogada</span>' :
+                           '<span style="background:rgba(255,200,0,0.1);color:#f5c842;font-size:10px;padding:2px 6px;border-radius:4px">Gerada</span>';
+    html += '<div style="display:flex;align-items:center;gap:12px;padding:10px 12px;background:var(--bg3);border-radius:10px;margin-bottom:8px;flex-wrap:wrap">';
+    html += '<span style="font-size:18px">'+emoji+'</span>';
+    html += '<div class="aposta-balls">'+balls+'</div>';
+    html += '<div style="flex:1"><div style="font-size:13px;font-weight:600;color:'+cor+'">'+r.acertos+' acertos — '+r.descricao+'</div>';
+    html += '<div style="font-size:11px;color:var(--muted)">Concurso '+r.concurso+' · '+r.data+'</div></div>';
+    html += tag+'</div>';
+  });
+  el.innerHTML = html;
+}
+
+/* ── Estatísticas ── */
+async function loadEstatisticas(){
+  const d = await api('/api/estatisticas');
+  if(!d || d.erro) return;
+
+  // Atrasados
+  const elA = document.getElementById('stats-atrasados');
+  if(elA && d.mais_atrasados){
+    let html = '';
+    d.mais_atrasados.slice(0,8).forEach(function(n){
+      const pct = Math.min(100, n.semanas * 8);
+      html += '<div style="display:flex;align-items:center;gap:8px">';
+      html += '<div class="mini-ball" style="width:26px;height:26px;font-size:10px;flex-shrink:0">'+String(n.numero).padStart(2,'0')+'</div>';
+      html += '<div style="flex:1"><div style="height:4px;background:rgba(255,255,255,0.06);border-radius:2px;overflow:hidden">';
+      html += '<div style="height:100%;width:'+pct+'%;background:linear-gradient(90deg,#ff4d6d,#c0392b);border-radius:2px"></div></div></div>';
+      html += '<div style="font-size:10px;color:var(--muted);min-width:30px">'+n.semanas+'sem</div></div>';
+    });
+    elA.innerHTML = html;
+  }
+
+  // Pares
+  const elP = document.getElementById('stats-pares');
+  if(elP && d.pares_frequentes){
+    let html = '';
+    d.pares_frequentes.slice(0,8).forEach(function(p){
+      html += '<div style="display:flex;align-items:center;gap:6px;font-size:12px">';
+      html += '<div class="mini-ball" style="width:24px;height:24px;font-size:9px">'+String(p.par[0]).padStart(2,'0')+'</div>';
+      html += '<span style="color:var(--muted)">+</span>';
+      html += '<div class="mini-ball" style="width:24px;height:24px;font-size:9px">'+String(p.par[1]).padStart(2,'0')+'</div>';
+      html += '<span style="color:var(--muted);margin-left:4px">'+p.count+'×</span></div>';
+    });
+    elP.innerHTML = html;
+  }
+
+  // Frios
+  const elF = document.getElementById('stats-frios');
+  if(elF && d.menos_sorteados){
+    let html = '';
+    d.menos_sorteados.slice(0,8).forEach(function(n){
+      html += '<div style="display:flex;align-items:center;gap:8px">';
+      html += '<div class="mini-ball" style="width:26px;height:26px;font-size:10px;background:rgba(74,158,255,0.15);color:#4a9eff;border-color:rgba(74,158,255,0.3)">'+String(n.numero).padStart(2,'0')+'</div>';
+      html += '<div style="flex:1"><div style="height:4px;background:rgba(255,255,255,0.06);border-radius:2px;overflow:hidden">';
+      const pct2 = Math.min(100,(n.count/20)*100);
+      html += '<div style="height:100%;width:'+pct2+'%;background:linear-gradient(90deg,#4a9eff,#185fa5);border-radius:2px"></div></div></div>';
+      html += '<div style="font-size:10px;color:var(--muted);min-width:24px">'+n.count+'×</div></div>';
+    });
+    elF.innerHTML = html;
+  }
+}
+
+/* ── Guardar combinações geradas automaticamente ── */
+async function guardarCombinacaoGerada(nums, concurso, jogada){
+  await api('/api/combinacoes/guardar', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({numeros: nums, concurso: concurso, jogada: jogada ? 1 : 0})
+  });
+}
 async function loadAll(){
   // Carrega sequencialmente — garante que frequencias carrega antes das combinacoes
   try { await loadJackpot(); } catch(e){ console.warn('jackpot',e); }
@@ -926,6 +1052,8 @@ async function loadAll(){
   try { await loadEvolucao(); } catch(e){ console.warn('evo',e); }
   try { await loadHistorico(); } catch(e){ console.warn('hist',e); }
   try { await loadApostas(); } catch(e){ console.warn('apostas',e); }
+  try { await loadNearMiss(); } catch(e){ console.warn('nearmiss',e); }
+  try { await loadEstatisticas(); } catch(e){ console.warn('stats',e); }
 }
 loadAll();
 </script>
