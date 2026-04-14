@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LottoCV — Jogos Sociais de Cabo Verde</title>
+<title>LottoCV â€” Jogos Sociais de Cabo Verde</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
@@ -81,7 +81,7 @@ header{display:flex;align-items:center;justify-content:space-between;padding:28p
 .card-title{font-size:10px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted);margin-bottom:18px;display:flex;align-items:center;gap:6px}
 .card-title::before{content:'';display:block;width:2px;height:12px;border-radius:1px;background:var(--gold)}
 
-/* Combinações */
+/* CombinaÃ§Ãµes */
 .combo-grid{display:flex;flex-direction:column;gap:10px}
 .combo-row{display:flex;align-items:center;gap:10px;padding:12px 14px;background:var(--bg3);border:1px solid var(--border);border-radius:10px;cursor:pointer;transition:all .2s}
 .combo-row:hover{border-color:rgba(245,200,66,0.3)}
@@ -107,7 +107,7 @@ header{display:flex;align-items:center;justify-content:space-between;padding:28p
 .freq-chart-wrap{position:relative;height:220px}
 .evo-chart-wrap{position:relative;height:190px}
 
-/* Histórico */
+/* HistÃ³rico */
 .hist-table{width:100%;border-collapse:collapse;font-size:13px}
 .hist-table th{text-align:left;padding:7px 10px;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border)}
 .hist-table td{padding:9px 10px;border-bottom:1px solid rgba(255,255,255,0.03);font-family:'JetBrains Mono',monospace;font-size:11px}
@@ -115,7 +115,7 @@ header{display:flex;align-items:center;justify-content:space-between;padding:28p
 .mini-balls{display:flex;gap:4px}
 .mini-ball{width:24px;height:24px;border-radius:50%;background:var(--bg3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:9px}
 
-/* ── LottoVision AI Chat ── */
+/* â”€â”€ LottoVision AI Chat â”€â”€ */
 .lv-section{margin-top:20px}
 .lv-card{background:linear-gradient(135deg,rgba(58,123,213,0.08) 0%,var(--bg2) 60%);border:1px solid rgba(58,123,213,0.25);border-radius:20px;overflow:hidden}
 .lv-header{display:flex;align-items:center;gap:14px;padding:20px 28px;border-bottom:1px solid rgba(58,123,213,0.15)}
@@ -153,7 +153,7 @@ header{display:flex;align-items:center;justify-content:space-between;padding:28p
 .lv-send:hover{opacity:.85}
 .lv-send:disabled{opacity:.4;cursor:not-allowed}
 
-/* Recomendação */
+/* RecomendaÃ§Ã£o */
 .rec-card{background:linear-gradient(135deg,rgba(245,200,66,0.05),var(--bg2));border:1px solid rgba(245,200,66,0.18);border-radius:var(--radius);padding:22px;margin-bottom:16px}
 .rec-text{font-size:13px;color:var(--muted);line-height:1.7;margin-top:8px}
 .budget-row{display:flex;gap:12px;margin-top:14px}
@@ -181,7 +181,7 @@ header{display:flex;align-items:center;justify-content:space-between;padding:28p
 <header>
   <div>
     <span class="logo-name">LOTTOCV</span>
-    <span class="logo-tag">Jogos Sociais · Cabo Verde</span>
+    <span class="logo-tag">Jogos Sociais Â· Cabo Verde</span>
   </div>
   <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
     <div style="font-size:12px;color:var(--muted)">
@@ -189,7 +189,7 @@ header{display:flex;align-items:center;justify-content:space-between;padding:28p
     </div>
     <button class="scrape-btn" onclick="triggerScrape()">
       <div class="spinner" id="scrape-spinner"></div>
-      ↻ Atualizar dados
+      â†» Atualizar dados
     </button>
   </div>
 </header>
@@ -197,7 +197,7 @@ header{display:flex;align-items:center;justify-content:space-between;padding:28p
 <!-- COUNTDOWN + BUDGET -->
 <div class="top-row">
   <div class="countdown-card">
-    <div class="card-label">⏱ Próximo Sorteio</div>
+    <div class="card-label">â± PrÃ³ximo Sorteio</div>
     <div class="countdown-digits">
       <div class="cd-block"><div class="cd-num" id="cd-d">--</div><div class="cd-unit">dias</div></div>
       <div class="cd-sep">:</div>
@@ -207,12 +207,12 @@ header{display:flex;align-items:center;justify-content:space-between;padding:28p
       <div class="cd-sep">:</div>
       <div class="cd-block"><div class="cd-num" id="cd-s">--</div><div class="cd-unit">seg</div></div>
     </div>
-    <div class="next-draw-info">Próximo sorteio: <b id="next-draw-date">--</b> às 19h15</div>
-    <div style="margin-top:6px;font-size:11px;color:var(--muted)">Sorteio: todos os Sábados às 19h15</div>
+    <div class="next-draw-info">PrÃ³ximo sorteio: <b id="next-draw-date">--</b> Ã s 19h15</div>
+    <div style="margin-top:6px;font-size:11px;color:var(--muted)">Sorteio: todos os SÃ¡bados Ã s 19h15</div>
   </div>
 
     <div class="budget-card">
-    <div class="card-label card-label-gold">💳 O Meu Orçamento Mensal</div>
+    <div class="card-label card-label-gold">ðŸ’³ O Meu OrÃ§amento Mensal</div>
     <div style="display:flex;align-items:flex-end;gap:8px;margin:4px 0 2px">
       <div class="budget-amount" id="budget-restante">1.000</div>
       <div style="font-size:14px;color:var(--muted);margin-bottom:12px">ECV restantes</div>
@@ -226,12 +226,12 @@ header{display:flex;align-items:center;justify-content:space-between;padding:28p
       <div class="budget-bar"><div class="budget-bar-fill" id="budget-bar-fill" style="width:0%"></div></div>
     </div>
     <div style="display:flex;gap:8px;margin-top:14px;align-items:center;flex-wrap:wrap">
-      <button onclick="registarGasto(100)" style="flex:1;padding:10px;background:linear-gradient(135deg,var(--gold),var(--gold2));border:none;border-radius:8px;color:#111;font-weight:700;font-size:14px;cursor:pointer;min-width:80px">− 100 ECV</button>
+      <button onclick="registarGasto(100)" style="flex:1;padding:10px;background:linear-gradient(135deg,var(--gold),var(--gold2));border:none;border-radius:8px;color:#111;font-weight:700;font-size:14px;cursor:pointer;min-width:80px">âˆ’ 100 ECV</button>
       <div style="display:flex;gap:6px;flex:2">
         <input id="gasto-custom" type="number" min="1" max="1000" placeholder="outro valor" style="flex:1;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 10px;color:var(--text);font-size:13px;outline:none;min-width:0">
         <button onclick="registarGastoCustom()" style="padding:9px 14px;background:rgba(245,200,66,0.15);border:1px solid rgba(245,200,66,0.3);border-radius:8px;color:var(--gold);font-size:13px;cursor:pointer">Gastar</button>
       </div>
-      <button onclick="desfazerGasto()" title="Desfazer último" style="padding:9px 12px;background:rgba(255,77,109,0.1);border:1px solid rgba(255,77,109,0.2);border-radius:8px;color:#ff4d6d;font-size:13px;cursor:pointer">↩ Desfazer</button>
+      <button onclick="desfazerGasto()" title="Desfazer Ãºltimo" style="padding:9px 12px;background:rgba(255,77,109,0.1);border:1px solid rgba(255,77,109,0.2);border-radius:8px;color:#ff4d6d;font-size:13px;cursor:pointer">â†© Desfazer</button>
     </div>
     <div id="gastos-lista" style="margin-top:12px;max-height:110px;overflow-y:auto;display:flex;flex-direction:column;gap:4px"></div>
   </div>
@@ -240,45 +240,45 @@ header{display:flex;align-items:center;justify-content:space-between;padding:28p
 <!-- JACKPOT HERO -->
 <div class="jackpot-hero">
   <div class="jcard">
-    <div class="jlabel">🎰 Totoloto — Jackpot Acumulado</div>
-    <div><span class="jval" id="jp-totoloto">—</span><span class="junit">contos</span></div>
+    <div class="jlabel">ðŸŽ° Totoloto â€” Jackpot Acumulado</div>
+    <div><span class="jval" id="jp-totoloto">â€”</span><span class="junit">contos</span></div>
     <div style="font-size:12px;color:var(--muted);margin-top:6px">
-      📅 <span id="jp-data">—</span> &nbsp;·&nbsp; 🎫 Concurso <span id="jp-concurso">—</span>
+      ðŸ“… <span id="jp-data">â€”</span> &nbsp;Â·&nbsp; ðŸŽ« Concurso <span id="jp-concurso">â€”</span>
     </div>
     <div class="jbar"><div class="jbar-fill" id="jp-bar" style="width:0%"></div></div>
-    <div style="font-size:10px;color:var(--muted);text-align:right;margin-top:4px" id="jp-pct">0% do máximo</div>
+    <div style="font-size:10px;color:var(--muted);text-align:right;margin-top:4px" id="jp-pct">0% do mÃ¡ximo</div>
     <div id="mode-badge-hero"></div>
   </div>
   <div class="jcard jcard2">
-    <div class="jlabel jlabel2">🃏 Joker — Jackpot</div>
-    <div><span class="jval" id="jp-joker" style="font-size:40px">—</span><span class="junit">contos</span></div>
+    <div class="jlabel jlabel2">ðŸƒ Joker â€” Jackpot</div>
+    <div><span class="jval" id="jp-joker" style="font-size:40px">â€”</span><span class="junit">contos</span></div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:16px">
-      <div class="bchip"><div class="bchip-label">Sorteios</div><div class="bchip-val" id="total-sorteios">—</div></div>
-      <div class="bchip"><div class="bchip-label">Top quente</div><div class="bchip-val" style="font-size:14px;margin-top:5px;color:var(--hot)" id="top-hot">—</div></div>
+      <div class="bchip"><div class="bchip-label">Sorteios</div><div class="bchip-val" id="total-sorteios">â€”</div></div>
+      <div class="bchip"><div class="bchip-label">Top quente</div><div class="bchip-val" style="font-size:14px;margin-top:5px;color:var(--hot)" id="top-hot">â€”</div></div>
     </div>
   </div>
 </div>
 
-<!-- RECOMENDAÇÃO -->
+<!-- RECOMENDAÃ‡ÃƒO -->
 <div class="rec-card">
   <div style="display:flex;align-items:center;justify-content:space-between">
-    <div class="card-title" style="margin:0">Recomendação de Aposta</div>
+    <div class="card-title" style="margin:0">RecomendaÃ§Ã£o de Aposta</div>
     <span id="rec-mode-badge"></span>
   </div>
-  <div class="rec-text" id="rec-texto">A calcular recomendação...</div>
+  <div class="rec-text" id="rec-texto">A calcular recomendaÃ§Ã£o...</div>
   <div class="budget-row">
-    <div class="bc"><div class="bc-l">Orçamento a usar</div><div class="bc-v" id="rec-orcamento">—</div></div>
-    <div class="bc"><div class="bc-l">Modo</div><div class="bc-v" id="rec-modo" style="font-size:16px;margin-top:6px">—</div></div>
-    <div class="bc"><div class="bc-l">Sorteios históricos</div><div class="bc-v" id="rec-historico">—</div></div>
+    <div class="bc"><div class="bc-l">OrÃ§amento a usar</div><div class="bc-v" id="rec-orcamento">â€”</div></div>
+    <div class="bc"><div class="bc-l">Modo</div><div class="bc-v" id="rec-modo" style="font-size:16px;margin-top:6px">â€”</div></div>
+    <div class="bc"><div class="bc-l">Sorteios histÃ³ricos</div><div class="bc-v" id="rec-historico">â€”</div></div>
   </div>
 </div>
 
-<!-- COMBINAÇÕES + HEATMAP -->
+<!-- COMBINAÃ‡Ã•ES + HEATMAP -->
 <div class="grid2">
   <div class="card">
     <div class="card-title">
-      Combinações Sugeridas
-      <button class="regen-btn" onclick="gerarCombinacoes()">⟳ Gerar novas</button>
+      CombinaÃ§Ãµes Sugeridas
+      <button class="regen-btn" onclick="gerarCombinacoes()">âŸ³ Gerar novas</button>
     </div>
     <div class="combo-grid" id="combos-container">
       <div style="color:var(--muted);font-size:13px">A gerar...</div>
@@ -290,7 +290,7 @@ header{display:flex;align-items:center;justify-content:space-between;padding:28p
     </div>
   </div>
   <div class="card">
-    <div class="card-title">Mapa de Frequência (1–45)</div>
+    <div class="card-title">Mapa de FrequÃªncia (1â€“45)</div>
     <div class="heatmap" id="heatmap-container"></div>
     <div class="freq-legend" style="margin-top:12px">
       <span><span class="leg-dot" style="background:var(--hot)"></span>Mais sorteado</span>
@@ -299,22 +299,22 @@ header{display:flex;align-items:center;justify-content:space-between;padding:28p
   </div>
 </div>
 
-<!-- GRÁFICO FREQUÊNCIAS -->
+<!-- GRÃFICO FREQUÃŠNCIAS -->
 <div class="card" style="margin-bottom:16px">
-  <div class="card-title">Frequência por Número</div>
+  <div class="card-title">FrequÃªncia por NÃºmero</div>
   <div class="freq-chart-wrap"><canvas id="freq-chart"></canvas></div>
 </div>
 
-<!-- EVOLUÇÃO + HISTÓRICO -->
+<!-- EVOLUÃ‡ÃƒO + HISTÃ“RICO -->
 <div class="grid2">
   <div class="card">
-    <div class="card-title">Evolução do Jackpot</div>
+    <div class="card-title">EvoluÃ§Ã£o do Jackpot</div>
     <div class="evo-chart-wrap"><canvas id="evo-chart"></canvas></div>
   </div>
   <div class="card">
-    <div class="card-title">Últimos Sorteios</div>
+    <div class="card-title">Ãšltimos Sorteios</div>
     <table class="hist-table">
-      <thead><tr><th>Concurso</th><th>Números</th><th>Data</th></tr></thead>
+      <thead><tr><th>Concurso</th><th>NÃºmeros</th><th>Data</th></tr></thead>
       <tbody id="historico-tbody"><tr><td colspan="3" style="color:var(--muted)">A carregar...</td></tr></tbody>
     </table>
   </div>
@@ -325,11 +325,11 @@ header{display:flex;align-items:center;justify-content:space-between;padding:28p
 <div style="margin-bottom:20px">
   <div class="card">
     <div class="card-title">
-      🎫 As Minhas Apostas
+      ðŸŽ« As Minhas Apostas
       <button class="regen-btn" style="float:right" onclick="toggleApostaForm()">+ Registar aposta</button>
     </div>
     <div id="aposta-form" style="display:none;margin-bottom:20px;padding:18px;background:var(--bg3);border-radius:10px;border:1px solid rgba(245,200,66,0.2)">
-      <div style="font-size:12px;color:var(--muted);margin-bottom:12px">Introduz os 6 números que jogaste:</div>
+      <div style="font-size:12px;color:var(--muted);margin-bottom:12px">Introduz os 6 nÃºmeros que jogaste:</div>
       <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px" id="num-inputs">
         <input class="num-inp" type="number" min="1" max="45" placeholder="N1">
         <input class="num-inp" type="number" min="1" max="45" placeholder="N2">
@@ -349,7 +349,7 @@ header{display:flex;align-items:center;justify-content:space-between;padding:28p
     <div id="apostas-lista"><div style="color:var(--muted);font-size:13px;padding:8px 0">Sem apostas registadas ainda.</div></div>
     <div style="margin-top:16px;display:flex;gap:10px;align-items:center;flex-wrap:wrap">
       <button onclick="verificarResultados()" style="padding:9px 20px;background:rgba(0,212,170,0.12);border:1px solid rgba(0,212,170,0.3);border-radius:8px;color:var(--cyan);font-size:13px;font-weight:500;cursor:pointer">
-        🔍 Verificar resultado do último sorteio
+        ðŸ” Verificar resultado do Ãºltimo sorteio
       </button>
       <div id="verificar-msg" style="font-size:13px;color:var(--muted)"></div>
     </div>
@@ -361,13 +361,13 @@ header{display:flex;align-items:center;justify-content:space-between;padding:28p
 <!-- MODO MENSAL -->
 <div style="margin-bottom:20px">
   <div class="card">
-    <div class="card-title">📅 Modo do Mês</div>
+    <div class="card-title">ðŸ“… Modo do MÃªs</div>
     <div style="display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap">
       <button id="btn-toto" onclick="setModo('MES_TOTOLOTO')" style="flex:1;padding:12px;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;border:2px solid var(--gold);background:rgba(245,200,66,0.15);color:var(--gold)">
-        🎯 Mês Totoloto<br><span style="font-size:11px;font-weight:400;opacity:.8">8 chaves × 30 ECV × 4 sorteios = 960 ECV</span>
+        ðŸŽ¯ MÃªs Totoloto<br><span style="font-size:11px;font-weight:400;opacity:.8">8 chaves Ã— 30 ECV Ã— 4 sorteios = 960 ECV</span>
       </button>
       <button id="btn-comp" onclick="setModo('MES_COMPLETO')" style="flex:1;padding:12px;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;border:2px solid var(--border);background:transparent;color:var(--muted)">
-        🎰 Mês Completo<br><span style="font-size:11px;font-weight:400;opacity:.8">Totoloto + Joker (100 ECV/chave)</span>
+        ðŸŽ° MÃªs Completo<br><span style="font-size:11px;font-weight:400;opacity:.8">Totoloto + Joker (100 ECV/chave)</span>
       </button>
     </div>
 
@@ -375,31 +375,31 @@ header{display:flex;align-items:center;justify-content:space-between;padding:28p
       <div style="font-size:13px;color:var(--text);line-height:1.7" id="modo-justificacao">A carregar...</div>
     </div>
 
-    <!-- 8 chaves do mês -->
-    <div class="card-title" style="margin-bottom:12px">🎲 As Tuas 8 Chaves para este Sorteio</div>
+    <!-- 8 chaves do mÃªs -->
+    <div class="card-title" style="margin-bottom:12px">ðŸŽ² As Tuas 8 Chaves para este Sorteio</div>
     <div id="chaves-mes" style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
       <div style="color:var(--muted);font-size:13px">A gerar...</div>
     </div>
-    <button onclick="gerarChavesMes()" style="margin-top:14px;padding:9px 18px;background:rgba(245,200,66,0.1);border:1px solid rgba(245,200,66,0.3);border-radius:8px;color:var(--gold);font-size:12px;cursor:pointer">⟳ Gerar novas chaves</button>
+    <button onclick="gerarChavesMes()" style="margin-top:14px;padding:9px 18px;background:rgba(245,200,66,0.1);border:1px solid rgba(245,200,66,0.3);border-radius:8px;color:var(--gold);font-size:12px;cursor:pointer">âŸ³ Gerar novas chaves</button>
 
-    <!-- Análise próximo mês -->
+    <!-- AnÃ¡lise prÃ³ximo mÃªs -->
     <div style="margin-top:20px;padding:14px;background:rgba(0,212,170,0.05);border:1px solid rgba(0,212,170,0.15);border-radius:10px">
-      <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--cyan);margin-bottom:8px">📊 Análise — Próximo Mês</div>
+      <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--cyan);margin-bottom:8px">ðŸ“Š AnÃ¡lise â€” PrÃ³ximo MÃªs</div>
       <div id="proximo-mes-text" style="font-size:13px;color:var(--muted);line-height:1.6">A analisar...</div>
     </div>
   </div>
 </div>
 
-<!-- BÊNÇÃO E VERSÍCULOS -->
+<!-- BÃŠNÃ‡ÃƒO E VERSÃCULOS -->
 <div style="margin-bottom:20px">
   <div class="card" style="background:linear-gradient(135deg,rgba(139,90,43,0.08),var(--bg2));border-color:rgba(210,180,140,0.2)">
-    <div class="card-title" style="color:#d4a96a">✝️ Bênção & Palavra de Deus</div>
+    <div class="card-title" style="color:#d4a96a">âœï¸ BÃªnÃ§Ã£o & Palavra de Deus</div>
     <div id="oracao-div" style="font-size:14px;color:#c4956a;font-style:italic;line-height:1.7;margin-bottom:16px;padding:14px;background:rgba(210,180,140,0.06);border-radius:8px;border-left:3px solid rgba(210,180,140,0.3)">
       A carregar...
     </div>
     <div id="versiculos-div" style="display:flex;flex-direction:column;gap:12px"></div>
     <div style="margin-top:14px;font-size:12px;color:rgba(210,180,140,0.6);text-align:center" id="bencao-msg"></div>
-    <button onclick="loadBencao()" style="display:block;margin:14px auto 0;padding:8px 20px;background:rgba(210,180,140,0.1);border:1px solid rgba(210,180,140,0.25);border-radius:8px;color:#d4a96a;font-size:12px;cursor:pointer">🙏 Nova bênção</button>
+    <button onclick="loadBencao()" style="display:block;margin:14px auto 0;padding:8px 20px;background:rgba(210,180,140,0.1);border:1px solid rgba(210,180,140,0.25);border-radius:8px;color:#d4a96a;font-size:12px;cursor:pointer">ðŸ™ Nova bÃªnÃ§Ã£o</button>
   </div>
 </div>
 
@@ -407,28 +407,28 @@ header{display:flex;align-items:center;justify-content:space-between;padding:28p
 <!-- NEAR MISS -->
 <div style="margin-bottom:20px">
   <div class="card">
-    <div class="card-title">🎯 Quase Saiu — Combinações que Quase Acertaram</div>
+    <div class="card-title">ðŸŽ¯ Quase Saiu â€” CombinaÃ§Ãµes que Quase Acertaram</div>
     <div id="nearmiss-container">
-      <div style="color:var(--muted);font-size:13px">A carregar análise...</div>
+      <div style="color:var(--muted);font-size:13px">A carregar anÃ¡lise...</div>
     </div>
   </div>
 </div>
 
-<!-- ESTATÍSTICAS -->
+<!-- ESTATÃSTICAS -->
 <div style="margin-bottom:20px">
   <div class="card">
-    <div class="card-title">📊 Estatísticas Avançadas</div>
+    <div class="card-title">ðŸ“Š EstatÃ­sticas AvanÃ§adas</div>
     <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px" id="stats-grid">
       <div>
-        <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:10px">⏰ Mais Atrasados</div>
+        <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:10px">â° Mais Atrasados</div>
         <div id="stats-atrasados" style="display:flex;flex-direction:column;gap:6px"></div>
       </div>
       <div>
-        <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:10px">🔗 Pares Mais Frequentes</div>
+        <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:10px">ðŸ”— Pares Mais Frequentes</div>
         <div id="stats-pares" style="display:flex;flex-direction:column;gap:6px"></div>
       </div>
       <div>
-        <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:10px">❄️ Menos Sorteados</div>
+        <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:10px">â„ï¸ Menos Sorteados</div>
         <div id="stats-frios" style="display:flex;flex-direction:column;gap:6px"></div>
       </div>
     </div>
@@ -439,44 +439,44 @@ header{display:flex;align-items:center;justify-content:space-between;padding:28p
 <div class="lv-section">
   <div class="lv-card">
     <div class="lv-header">
-      <div class="lv-avatar">🔮</div>
+      <div class="lv-avatar">ðŸ”®</div>
       <div>
         <div class="lv-title">LottoVision</div>
-        <div class="lv-sub">Assistente IA · Análise & Combinações</div>
+        <div class="lv-sub">Assistente IA Â· AnÃ¡lise & CombinaÃ§Ãµes</div>
       </div>
       <div class="lv-online"><span class="dot"></span>Online</div>
     </div>
 
     <div class="lv-messages" id="lv-messages">
       <div class="lv-msg lv-msg-bot">
-        👋 Olá! Sou o <b>LottoVision</b>, o teu assistente inteligente para os Jogos Sociais de Cabo Verde.<br><br>
-        Posso gerar combinações, analisar frequências e recomendar estratégias de aposta. Em que posso ajudar?
+        ðŸ‘‹ OlÃ¡! Sou o <b>LottoVision</b>, o teu assistente inteligente para os Jogos Sociais de Cabo Verde.<br><br>
+        Posso gerar combinaÃ§Ãµes, analisar frequÃªncias e recomendar estratÃ©gias de aposta. Em que posso ajudar?
       </div>
     </div>
 
     <div class="lv-suggestions">
-      <div class="lv-sug" onclick="sendSuggestion(this)">🎲 Gera 5 combinações para hoje</div>
-      <div class="lv-sug" onclick="sendSuggestion(this)">🔥 Quais os números mais quentes?</div>
-      <div class="lv-sug" onclick="sendSuggestion(this)">💰 Devo apostar esta semana?</div>
-      <div class="lv-sug" onclick="sendSuggestion(this)">📊 Analisa o jackpot atual</div>
-      <div class="lv-sug" onclick="sendSuggestion(this)">🃏 Combinação para o Joker</div>
+      <div class="lv-sug" onclick="sendSuggestion(this)">ðŸŽ² Gera 5 combinaÃ§Ãµes para hoje</div>
+      <div class="lv-sug" onclick="sendSuggestion(this)">ðŸ”¥ Quais os nÃºmeros mais quentes?</div>
+      <div class="lv-sug" onclick="sendSuggestion(this)">ðŸ’° Devo apostar esta semana?</div>
+      <div class="lv-sug" onclick="sendSuggestion(this)">ðŸ“Š Analisa o jackpot atual</div>
+      <div class="lv-sug" onclick="sendSuggestion(this)">ðŸƒ CombinaÃ§Ã£o para o Joker</div>
     </div>
 
     <div class="lv-input-row">
       <input class="lv-input" id="lv-input" placeholder="Pergunta ao LottoVision..." onkeydown="if(event.key==='Enter')sendToLV()">
-      <button class="lv-send" id="lv-send-btn" onclick="sendToLV()">➤</button>
+      <button class="lv-send" id="lv-send-btn" onclick="sendToLV()">âž¤</button>
     </div>
   </div>
 </div>
 
 <div style="text-align:center;margin-top:32px;font-size:11px;color:var(--muted)">
-  ⚠️ A análise de frequência é estatística descritiva. Joga com responsabilidade e dentro das tuas possibilidades.
+  âš ï¸ A anÃ¡lise de frequÃªncia Ã© estatÃ­stica descritiva. Joga com responsabilidade e dentro das tuas possibilidades.
 </div>
 
 </div><!-- .app -->
 
 <script>
-const API = 'http://localhost:8000';
+const API = '';
 let freqData=[], hotNums=new Set(), coldNums=new Set();
 let freqChart, evoChart, freqAnimFrame;
 const fmt = function(n){ return Number(n).toLocaleString('pt-PT'); };
@@ -494,7 +494,7 @@ async function api(path, opts){
   }catch(e){ console.warn('API erro:',path,e); return null; }
 }
 
-/* ── Countdown Sábado 19h15 ── */
+/* â”€â”€ Countdown SÃ¡bado 19h15 â”€â”€ */
 function calcNextDraw(){
   const now = new Date();
   const cvNow = new Date(now.getTime() - 1*60*60*1000);
@@ -527,7 +527,7 @@ function updateCountdown(){
 setInterval(updateCountdown, 1000);
 updateCountdown();
 
-/* ── Orçamento Tracker ── */
+/* â”€â”€ OrÃ§amento Tracker â”€â”€ */
 function mesAtual(){
   const n = new Date();
   return n.getFullYear()+'-'+String(n.getMonth()+1).padStart(2,'0');
@@ -547,24 +547,24 @@ async function loadBudget(){
   else if(pct >= 60) barEl.style.background = 'linear-gradient(90deg,#f5c842,#e8a020)';
   else barEl.style.background = 'linear-gradient(90deg,#00d4aa,#0f6e56)';
   const sorteiosFeitos = d.gastos_lista ? d.gastos_lista.length : 0;
-  document.getElementById('budget-mode-text').textContent = sorteiosFeitos+'/4 sorteios jogados este mês';
+  document.getElementById('budget-mode-text').textContent = sorteiosFeitos+'/4 sorteios jogados este mÃªs';
   const lista = document.getElementById('gastos-lista');
   if(d.gastos_lista && d.gastos_lista.length > 0){
     let html = '';
     d.gastos_lista.slice(0,5).forEach(function(g){
       html += '<div style="display:flex;justify-content:space-between;align-items:center;padding:5px 8px;background:var(--bg3);border-radius:6px;font-size:12px">';
       html += '<span style="color:var(--muted)">'+(g.descricao||'Aposta')+'</span>';
-      html += '<span style="color:#ff4d6d;font-weight:600;font-family:monospace">−'+g.valor+' ECV</span></div>';
+      html += '<span style="color:#ff4d6d;font-weight:600;font-family:monospace">âˆ’'+g.valor+' ECV</span></div>';
     });
     lista.innerHTML = html;
   } else {
-    lista.innerHTML = '<div style="font-size:11px;color:var(--muted);padding:4px 0">Sem gastos registados este mês</div>';
+    lista.innerHTML = '<div style="font-size:11px;color:var(--muted);padding:4px 0">Sem gastos registados este mÃªs</div>';
   }
 }
 
 async function registarGasto(valor){
   const hoje = new Date().toLocaleDateString('pt-PT',{weekday:'short',day:'numeric',month:'short'});
-  const desc = 'Sorteio — '+hoje;
+  const desc = 'Sorteio â€” '+hoje;
   await api('/api/orcamento/gasto', {
     method:'POST', headers:{'Content-Type':'application/json'},
     body: JSON.stringify({mes: mesAtual(), valor: valor, descricao: desc})
@@ -586,22 +586,22 @@ async function desfazerGasto(){
   await loadBudget();
 }
 
-/* ── Jackpot ── */
+/* â”€â”€ Jackpot â”€â”€ */
 async function loadJackpot(){
   const d = await api('/api/jackpot');
   if(!d) return;
   const tv = d.totoloto.valor_contos;
   document.getElementById('jp-totoloto').textContent = fmt(Math.round(tv));
   document.getElementById('jp-joker').textContent    = fmt(Math.round(d.joker.valor_contos));
-  document.getElementById('jp-data').textContent     = d.totoloto.data_sorteio||'—';
-  document.getElementById('jp-concurso').textContent = d.totoloto.concurso||'—';
+  document.getElementById('jp-data').textContent     = d.totoloto.data_sorteio||'â€”';
+  document.getElementById('jp-concurso').textContent = d.totoloto.concurso||'â€”';
   const pct = Math.min(100,(d.totoloto.valor/50000000)*100);
   document.getElementById('jp-bar').style.width  = pct+'%';
-  document.getElementById('jp-pct').textContent  = pct.toFixed(1)+'% do máximo (50.000 contos)';
+  document.getElementById('jp-pct').textContent  = pct.toFixed(1)+'% do mÃ¡ximo (50.000 contos)';
   document.getElementById('last-update').textContent = 'Atualizado: '+(d.totoloto.atualizado_em||'agora');
 }
 
-/* ── Recomendação ── */
+/* â”€â”€ RecomendaÃ§Ã£o â”€â”€ */
 async function loadRecomendacao(){
   const d = await api('/api/recomendacao');
   if(!d) return;
@@ -610,12 +610,12 @@ async function loadRecomendacao(){
   document.getElementById('rec-modo').textContent    = d.modo;
   document.getElementById('rec-historico').textContent = d.total_sorteios_analisados;
   const isC = d.modo && d.modo.indexOf('JACKPOT') >= 0;
-  const bHtml = '<span class="mode-badge '+(isC?'mode-concentrado':'mode-semanal')+'">'+(isC?'🔥 JACKPOT ALTO':'📅 SEMANAL')+'</span>';
+  const bHtml = '<span class="mode-badge '+(isC?'mode-concentrado':'mode-semanal')+'">'+(isC?'ðŸ”¥ JACKPOT ALTO':'ðŸ“… SEMANAL')+'</span>';
   document.getElementById('rec-mode-badge').innerHTML  = bHtml;
   document.getElementById('mode-badge-hero').innerHTML = bHtml;
 }
 
-/* ── Modo Mensal ── */
+/* â”€â”€ Modo Mensal â”€â”€ */
 let modoAtual = 'MES_TOTOLOTO';
 
 function setModo(modo){
@@ -656,7 +656,7 @@ async function gerarChavesMes(){
     html += '<div class="combo-row" style="padding:10px 12px" onclick="copiarCombo(['+combo.join(',')+'],this)">';
     html += '<span class="combo-idx">'+(i+1)+'</span>';
     html += '<div class="balls">'+balls+'</div>';
-    html += '<button class="copy-btn">⎘</button></div>';
+    html += '<button class="copy-btn">âŽ˜</button></div>';
   });
   el.innerHTML = html;
   await loadBencao();
@@ -665,13 +665,13 @@ async function gerarChavesMes(){
 async function loadProximoMes(){
   const d = await api('/api/proximo-mes');
   if(!d) return;
-  const icon = d.recomendacao === 'MES_TOTOLOTO' ? '🎯' : '🎰';
-  const modo = d.recomendacao === 'MES_TOTOLOTO' ? 'Mês Totoloto' : 'Mês Completo';
+  const icon = d.recomendacao === 'MES_TOTOLOTO' ? 'ðŸŽ¯' : 'ðŸŽ°';
+  const modo = d.recomendacao === 'MES_TOTOLOTO' ? 'MÃªs Totoloto' : 'MÃªs Completo';
   document.getElementById('proximo-mes-text').innerHTML =
-    icon+' <b style="color:var(--cyan)">'+modo+'</b> — '+d.razao;
+    icon+' <b style="color:var(--cyan)">'+modo+'</b> â€” '+d.razao;
 }
 
-/* ── Bênção & Bíblia ── */
+/* â”€â”€ BÃªnÃ§Ã£o & BÃ­blia â”€â”€ */
 async function loadBencao(){
   const d = await api('/api/bencao');
   if(!d) return;
@@ -690,7 +690,7 @@ async function loadBencao(){
   el.innerHTML = html;
 }
 
-/* ── Frequências ── */
+/* â”€â”€ FrequÃªncias â”€â”€ */
 async function loadFrequencias(){
   const d = await api('/api/frequencias');
   if(!d) return;
@@ -698,7 +698,7 @@ async function loadFrequencias(){
   hotNums  = new Set(d.top_quentes);
   coldNums = new Set(d.top_frios);
   document.getElementById('total-sorteios').textContent = d.total_sorteios;
-  document.getElementById('top-hot').textContent = d.top_quentes.slice(0,3).join(' · ');
+  document.getElementById('top-hot').textContent = d.top_quentes.slice(0,3).join(' Â· ');
   renderHeatmap(freqData);
   renderFreqChart(freqData);
 }
@@ -713,7 +713,7 @@ function renderHeatmap(data){
     if(d.tipo==='quente'){bg='rgba(255,107,53,'+(0.1+r*0.5)+')';color='#ff6b35';}
     else if(d.tipo==='frio'){bg='rgba(74,158,255,'+(0.08+r*0.3)+')';color='#4a9eff';}
     else{bg='rgba(155,142,214,'+(0.08+r*0.3)+')';color='#9b8ed6';}
-    html += '<div class="hm-cell" style="background:'+bg+';color:'+color+'">'+String(d.numero).padStart(2,'0')+'<div class="tip">'+d.count+'×</div></div>';
+    html += '<div class="hm-cell" style="background:'+bg+';color:'+color+'">'+String(d.numero).padStart(2,'0')+'<div class="tip">'+d.count+'Ã—</div></div>';
   });
   el.innerHTML = html;
 }
@@ -731,7 +731,7 @@ function renderFreqChart(data){
     type:'bar',
     data:{labels:data.map(function(d){return d.numero;}),datasets:[{data:animData,backgroundColor:colors,borderRadius:3,borderSkipped:false}]},
     options:{responsive:true,maintainAspectRatio:false,animation:false,
-      plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return 'Sorteado '+finalData[c.dataIndex]+'×';}}}},
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return 'Sorteado '+finalData[c.dataIndex]+'Ã—';}}}},
       scales:{x:{grid:{color:'rgba(255,255,255,0.04)'},ticks:{color:'#6b7280',font:{family:'JetBrains Mono',size:10}}},
               y:{grid:{color:'rgba(255,255,255,0.04)'},ticks:{color:'#6b7280',font:{size:11}},beginAtZero:true}}}
   });
@@ -763,7 +763,7 @@ async function loadEvolucao(){
   });
 }
 
-/* ── Combinações dashboard ── */
+/* â”€â”€ CombinaÃ§Ãµes dashboard â”€â”€ */
 async function gerarCombinacoes(){
   if(freqData.length === 0){ await loadFrequencias(); }
   const d = await api('/api/combinacoes?n=5&estrategia=equilibrada');
@@ -778,7 +778,7 @@ async function gerarCombinacoes(){
     });
     html += '<div class="combo-row" onclick="copiarCombo(['+combo.join(',')+'],this)">';
     html += '<span class="combo-idx">'+(i+1)+'</span><div class="balls">'+balls+'</div>';
-    html += '<button class="copy-btn">⎘</button></div>';
+    html += '<button class="copy-btn">âŽ˜</button></div>';
   });
   el.innerHTML = html;
 }
@@ -786,11 +786,11 @@ async function gerarCombinacoes(){
 function copiarCombo(combo,row){
   navigator.clipboard.writeText(combo.join(' - '));
   const btn=row.querySelector('.copy-btn');
-  btn.textContent='✓';
-  setTimeout(function(){btn.textContent='⎘';},1500);
+  btn.textContent='âœ“';
+  setTimeout(function(){btn.textContent='âŽ˜';},1500);
 }
 
-/* ── Histórico ── */
+/* â”€â”€ HistÃ³rico â”€â”€ */
 async function loadHistorico(){
   const d = await api('/api/historico?limite=8');
   if(!d) return;
@@ -807,12 +807,12 @@ async function loadHistorico(){
     });
     html += '<tr><td style="color:var(--muted)">'+s.concurso+'</td>';
     html += '<td><div class="mini-balls">'+balls+'</div></td>';
-    html += '<td style="color:var(--muted)">'+(s.data||'—')+'</td></tr>';
+    html += '<td style="color:var(--muted)">'+(s.data||'â€”')+'</td></tr>';
   });
   tbody.innerHTML = html;
 }
 
-/* ── Apostas ── */
+/* â”€â”€ Apostas â”€â”€ */
 document.head.insertAdjacentHTML('beforeend', '<style>.num-inp{width:56px;height:40px;background:#0a0c10;border:1px solid rgba(255,255,255,0.15);border-radius:8px;color:#e8eaf0;font-size:15px;font-weight:600;text-align:center;outline:none;font-family:JetBrains Mono,monospace}.num-inp:focus{border-color:rgba(245,200,66,0.5)}.aposta-row{display:flex;align-items:center;gap:10px;padding:12px 14px;background:#181d2a;border:1px solid rgba(255,255,255,0.07);border-radius:10px;margin-bottom:8px;flex-wrap:wrap}.aposta-balls{display:flex;gap:5px;flex:1}.aball{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:JetBrains Mono,monospace;font-size:11px;font-weight:600;flex-shrink:0}.aball-normal{background:rgba(155,142,214,0.12);color:#9b8ed6;border:1px solid rgba(155,142,214,0.2)}.aball-hit{background:rgba(0,212,170,0.2);color:#00d4aa;border:1px solid rgba(0,212,170,0.4)}.aball-miss{background:rgba(255,77,109,0.12);color:#ff4d6d;border:1px solid rgba(255,77,109,0.2)}.res-win{background:rgba(0,212,170,0.08);border:1px solid rgba(0,212,170,0.25);border-radius:12px;padding:18px 22px;margin-bottom:10px}.res-lose{background:rgba(255,77,109,0.06);border:1px solid rgba(255,77,109,0.2);border-radius:12px;padding:18px 22px;margin-bottom:10px}</style>');
 
 function toggleApostaForm(){
@@ -823,12 +823,12 @@ function toggleApostaForm(){
 async function registarAposta(){
   const inps=[...document.querySelectorAll('.num-inp')];
   const nums=inps.map(function(i){return parseInt(i.value);}).filter(function(n){return n>=1&&n<=45;});
-  if(nums.length!==6){ document.getElementById('aposta-msg').textContent='⚠️ Introduz 6 números válidos (1-45)'; return; }
-  if(new Set(nums).size!==6){ document.getElementById('aposta-msg').textContent='⚠️ Os números não podem repetir'; return; }
+  if(nums.length!==6){ document.getElementById('aposta-msg').textContent='âš ï¸ Introduz 6 nÃºmeros vÃ¡lidos (1-45)'; return; }
+  if(new Set(nums).size!==6){ document.getElementById('aposta-msg').textContent='âš ï¸ Os nÃºmeros nÃ£o podem repetir'; return; }
   const concurso=document.getElementById('concurso-inp').value.trim();
   const r=await api('/api/apostas',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({numeros:nums,concurso:concurso,jogo:'totoloto',custo:100})});
   if(r&&r.status==='ok'){
-    document.getElementById('aposta-msg').textContent='✅ Aposta guardada!';
+    document.getElementById('aposta-msg').textContent='âœ… Aposta guardada!';
     inps.forEach(function(i){i.value='';});
     document.getElementById('concurso-inp').value='';
     setTimeout(function(){document.getElementById('aposta-msg').textContent='';},2500);
@@ -849,11 +849,11 @@ async function loadApostas(){
     nums.forEach(function(n){ balls+='<div class="aball aball-normal">'+String(n).padStart(2,'0')+'</div>'; });
     let acLabel='';
     if(a.verificado){
-      acLabel = a.acertos>0 ? '<span style="color:#00d4aa;font-weight:600">'+a.acertos+' acertos ✓'+(a.ganho>0?' · '+fmt(a.ganho)+' ECV':'')+'</span>' : '<span style="color:#ff4d6d">0 acertos</span>';
+      acLabel = a.acertos>0 ? '<span style="color:#00d4aa;font-weight:600">'+a.acertos+' acertos âœ“'+(a.ganho>0?' Â· '+fmt(a.ganho)+' ECV':'')+'</span>' : '<span style="color:#ff4d6d">0 acertos</span>';
     } else {
       acLabel='<span style="color:#5a6070">Por verificar</span>';
     }
-    html+='<div class="aposta-row"><div style="font-size:10px;color:var(--muted);min-width:60px">'+(a.concurso||'—')+'</div><div class="aposta-balls">'+balls+'</div><div style="font-size:12px">'+acLabel+'</div><div style="font-size:10px;color:var(--muted)">'+a.jogado_em.slice(0,10)+'</div></div>';
+    html+='<div class="aposta-row"><div style="font-size:10px;color:var(--muted);min-width:60px">'+(a.concurso||'â€”')+'</div><div class="aposta-balls">'+balls+'</div><div style="font-size:12px">'+acLabel+'</div><div style="font-size:10px;color:var(--muted)">'+a.jogado_em.slice(0,10)+'</div></div>';
   });
   document.getElementById('apostas-lista').innerHTML=html;
 }
@@ -861,11 +861,11 @@ async function loadApostas(){
 async function verificarResultados(){
   const msg=document.getElementById('verificar-msg');
   const div=document.getElementById('resultado-verificacao');
-  msg.textContent='⏳ A verificar...';
+  msg.textContent='â³ A verificar...';
   const d=await api('/api/verificar/ultimo');
-  if(!d){msg.textContent='⚠️ Erro ao verificar.';return;}
-  if(d.erro){msg.textContent='ℹ️ '+d.erro;return;}
-  if(d.info){msg.textContent='ℹ️ '+d.info;return;}
+  if(!d){msg.textContent='âš ï¸ Erro ao verificar.';return;}
+  if(d.erro){msg.textContent='â„¹ï¸ '+d.erro;return;}
+  if(d.info){msg.textContent='â„¹ï¸ '+d.info;return;}
   msg.textContent='';
   const sorteados=d.numeros_sorteados||[];
   let sorteadosStr='';
@@ -878,16 +878,16 @@ async function verificarResultados(){
       const hit=(r.numeros_certos||[]).includes(n);
       balls+='<div class="aball '+(hit?'aball-hit':'aball-miss')+'">'+String(n).padStart(2,'0')+'</div>';
     });
-    const ganhoLine=r.ganhou?'<div style="font-size:13px;color:#00d4aa;margin-top:6px">💰 Ganho: <b>'+fmt(r.ganho)+' ECV</b></div>':'';
+    const ganhoLine=r.ganhou?'<div style="font-size:13px;color:#00d4aa;margin-top:6px">ðŸ’° Ganho: <b>'+fmt(r.ganho)+' ECV</b></div>':'';
     rows+='<div class="'+cls+'"><div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap"><div class="aposta-balls">'+balls+'</div><div><div style="font-size:14px;font-weight:600;color:'+(r.ganhou?'#00d4aa':'#ff4d6d')+'">'+r.descricao+'</div><div style="font-size:12px;color:var(--muted);margin-top:3px">Acertos: '+((r.numeros_certos||[]).join(', ')||'nenhum')+'</div>'+ganhoLine+'</div></div></div>';
   });
-  const totalLine=d.total_ganho>0?'<div style="color:#00d4aa">🏆 Total ganho: <b>'+fmt(d.total_ganho)+' ECV</b></div>':'<div style="color:#ff4d6d">❌ Sem prémios desta vez</div>';
+  const totalLine=d.total_ganho>0?'<div style="color:#00d4aa">ðŸ† Total ganho: <b>'+fmt(d.total_ganho)+' ECV</b></div>':'<div style="color:#ff4d6d">âŒ Sem prÃ©mios desta vez</div>';
   div.style.display='block';
-  div.innerHTML='<div style="padding:16px;background:rgba(245,200,66,0.05);border:1px solid rgba(245,200,66,0.15);border-radius:10px;margin-bottom:14px"><div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px">Resultado — Concurso '+d.concurso+'</div><div style="font-size:13px;color:var(--muted);margin-bottom:6px">Números sorteados:</div><div style="margin-bottom:10px">'+sorteadosStr+'</div>'+totalLine+'<div style="font-size:12px;color:var(--muted);margin-top:4px">Gasto: '+fmt(d.total_gasto)+' ECV · Lucro: <span style="color:'+(d.lucro_total>=0?'#00d4aa':'#ff4d6d')+'">'+fmt(d.lucro_total)+' ECV</span></div></div>'+rows;
+  div.innerHTML='<div style="padding:16px;background:rgba(245,200,66,0.05);border:1px solid rgba(245,200,66,0.15);border-radius:10px;margin-bottom:14px"><div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px">Resultado â€” Concurso '+d.concurso+'</div><div style="font-size:13px;color:var(--muted);margin-bottom:6px">NÃºmeros sorteados:</div><div style="margin-bottom:10px">'+sorteadosStr+'</div>'+totalLine+'<div style="font-size:12px;color:var(--muted);margin-top:4px">Gasto: '+fmt(d.total_gasto)+' ECV Â· Lucro: <span style="color:'+(d.lucro_total>=0?'#00d4aa':'#ff4d6d')+'">'+fmt(d.lucro_total)+' ECV</span></div></div>'+rows;
   await loadApostas();
 }
 
-/* ── Atualizar dados ── */
+/* â”€â”€ Atualizar dados â”€â”€ */
 async function triggerScrape(){
   const sp=document.getElementById('scrape-spinner');
   sp.style.display='block';
@@ -895,7 +895,7 @@ async function triggerScrape(){
   finally{ sp.style.display='none'; }
 }
 
-/* ── LottoVision ── */
+/* â”€â”€ LottoVision â”€â”€ */
 const lvMsgs = document.getElementById('lv-messages');
 
 function addLVMessage(text, isUser){
@@ -905,7 +905,7 @@ function addLVMessage(text, isUser){
   else{
     // Format combinations and bold
     let formatted = text
-      .replace(/(\d{2})\s*[-–]\s*(\d{2})\s*[-–]\s*(\d{2})\s*[-–]\s*(\d{2})\s*[-–]\s*(\d{2})\s*[-–]\s*(\d{2})/g, '<span class="combo-highlight">$1 · $2 · $3 · $4 · $5 · $6</span>')
+      .replace(/(\d{2})\s*[-â€“]\s*(\d{2})\s*[-â€“]\s*(\d{2})\s*[-â€“]\s*(\d{2})\s*[-â€“]\s*(\d{2})\s*[-â€“]\s*(\d{2})/g, '<span class="combo-highlight">$1 Â· $2 Â· $3 Â· $4 Â· $5 Â· $6</span>')
       .replace(/\*\*(.*?)\*\*/g,'<b>$1</b>')
       .replace(/\*(.*?)\*/g,'<i>$1</i>')
       .replace(/\n/g,'<br>');
@@ -940,30 +940,30 @@ async function sendToLV(){
     addLVMessage(data.resposta||'Sem resposta.');
   }catch(e){
     removeTyping();
-    addLVMessage('⚠️ LottoVision temporariamente indisponível. Verifica a tua API key no ficheiro .env');
+    addLVMessage('âš ï¸ LottoVision temporariamente indisponÃ­vel. Verifica a tua API key no ficheiro .env');
   }finally{ btn.disabled=false; inp.focus(); }
 }
 
 function sendSuggestion(el){
-  document.getElementById('lv-input').value = el.textContent.replace(/^[^\w🎲🔥💰📊🃏]*/,'');
+  document.getElementById('lv-input').value = el.textContent.replace(/^[^\wðŸŽ²ðŸ”¥ðŸ’°ðŸ“ŠðŸƒ]*/,'');
   sendToLV();
 }
 
-/* ── Load All ── */
+/* â”€â”€ Load All â”€â”€ */
 
-/* ── Near Miss ── */
+/* â”€â”€ Near Miss â”€â”€ */
 async function loadNearMiss(){
   const d = await api('/api/nearmiss');
   const el = document.getElementById('nearmiss-container');
   if(!d || !d.nearmiss || !d.nearmiss.length){
     el.innerHTML = '<div style="color:var(--muted);font-size:13px">'+
-      (d && d.info ? d.info : 'Sem dados de near miss ainda. As combinações geradas serão analisadas após cada sorteio.')+'</div>';
+      (d && d.info ? d.info : 'Sem dados de near miss ainda. As combinaÃ§Ãµes geradas serÃ£o analisadas apÃ³s cada sorteio.')+'</div>';
     return;
   }
   let html = '';
   d.nearmiss.forEach(function(r){
     const cor = r.acertos >= 4 ? '#00d4aa' : r.acertos === 3 ? '#f5c842' : 'var(--muted)';
-    const emoji = r.acertos >= 5 ? '🏆' : r.acertos >= 4 ? '🥈' : r.acertos >= 3 ? '🥉' : '📍';
+    const emoji = r.acertos >= 5 ? 'ðŸ†' : r.acertos >= 4 ? 'ðŸ¥ˆ' : r.acertos >= 3 ? 'ðŸ¥‰' : 'ðŸ“';
     let balls = '';
     r.numeros_gerados.forEach(function(n){
       const hit = r.numeros_certos.includes(n);
@@ -974,14 +974,14 @@ async function loadNearMiss(){
     html += '<div style="display:flex;align-items:center;gap:12px;padding:10px 12px;background:var(--bg3);border-radius:10px;margin-bottom:8px;flex-wrap:wrap">';
     html += '<span style="font-size:18px">'+emoji+'</span>';
     html += '<div class="aposta-balls">'+balls+'</div>';
-    html += '<div style="flex:1"><div style="font-size:13px;font-weight:600;color:'+cor+'">'+r.acertos+' acertos — '+r.descricao+'</div>';
-    html += '<div style="font-size:11px;color:var(--muted)">Concurso '+r.concurso+' · '+r.data+'</div></div>';
+    html += '<div style="flex:1"><div style="font-size:13px;font-weight:600;color:'+cor+'">'+r.acertos+' acertos â€” '+r.descricao+'</div>';
+    html += '<div style="font-size:11px;color:var(--muted)">Concurso '+r.concurso+' Â· '+r.data+'</div></div>';
     html += tag+'</div>';
   });
   el.innerHTML = html;
 }
 
-/* ── Estatísticas ── */
+/* â”€â”€ EstatÃ­sticas â”€â”€ */
 async function loadEstatisticas(){
   const d = await api('/api/estatisticas');
   if(!d || d.erro) return;
@@ -1010,7 +1010,7 @@ async function loadEstatisticas(){
       html += '<div class="mini-ball" style="width:24px;height:24px;font-size:9px">'+String(p.par[0]).padStart(2,'0')+'</div>';
       html += '<span style="color:var(--muted)">+</span>';
       html += '<div class="mini-ball" style="width:24px;height:24px;font-size:9px">'+String(p.par[1]).padStart(2,'0')+'</div>';
-      html += '<span style="color:var(--muted);margin-left:4px">'+p.count+'×</span></div>';
+      html += '<span style="color:var(--muted);margin-left:4px">'+p.count+'Ã—</span></div>';
     });
     elP.innerHTML = html;
   }
@@ -1025,13 +1025,13 @@ async function loadEstatisticas(){
       html += '<div style="flex:1"><div style="height:4px;background:rgba(255,255,255,0.06);border-radius:2px;overflow:hidden">';
       const pct2 = Math.min(100,(n.count/20)*100);
       html += '<div style="height:100%;width:'+pct2+'%;background:linear-gradient(90deg,#4a9eff,#185fa5);border-radius:2px"></div></div></div>';
-      html += '<div style="font-size:10px;color:var(--muted);min-width:24px">'+n.count+'×</div></div>';
+      html += '<div style="font-size:10px;color:var(--muted);min-width:24px">'+n.count+'Ã—</div></div>';
     });
     elF.innerHTML = html;
   }
 }
 
-/* ── Guardar combinações geradas automaticamente ── */
+/* â”€â”€ Guardar combinaÃ§Ãµes geradas automaticamente â”€â”€ */
 async function guardarCombinacaoGerada(nums, concurso, jogada){
   await api('/api/combinacoes/guardar', {
     method: 'POST',
@@ -1040,7 +1040,7 @@ async function guardarCombinacaoGerada(nums, concurso, jogada){
   });
 }
 async function loadAll(){
-  // Carrega sequencialmente — garante que frequencias carrega antes das combinacoes
+  // Carrega sequencialmente â€” garante que frequencias carrega antes das combinacoes
   try { await loadJackpot(); } catch(e){ console.warn('jackpot',e); }
   try { await loadRecomendacao(); } catch(e){ console.warn('rec',e); }
   try { await loadBudget(); } catch(e){ console.warn('budget',e); }
@@ -1059,3 +1059,4 @@ loadAll();
 </script>
 </body>
 </html>
+
