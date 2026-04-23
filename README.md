@@ -1,5 +1,5 @@
 # 🎰 LottoCV — Otimizador de Apostas para Jogos Sociais de Cabo Verde
-
+##Atualização GitMon
 Sistema automatizado para análise e recomendação de apostas no Totoloto e Joker de Cabo Verde.
 
 ## 📦 Estrutura do Projeto
